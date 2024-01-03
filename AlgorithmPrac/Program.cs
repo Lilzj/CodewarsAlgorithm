@@ -7,7 +7,7 @@ namespace AlgorithmPrac
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(CategorizeNewMember(new[] { new[] { 45, 12 }, new[] { 55, 21 }}));
+            Console.WriteLine(Playingwithdigits(46288, 3));
         }
 
         public static int Quadrant(int x, int y)
@@ -17,7 +17,7 @@ namespace AlgorithmPrac
         }
         public static string JadenCasingStrings(string phrase)
         {
-            var wod =  phrase.Split(" ");
+            var wod = phrase.Split(" ");
             var result = new StringBuilder();
             for (int i = 0; i < wod.Length; i++)
             {
@@ -29,21 +29,40 @@ namespace AlgorithmPrac
         public static IEnumerable<string> CategorizeNewMember(int[][] data)
         {
             var result = new List<string>();
-                for ( int j = 0; j < data.Length; j++)
+            for (int j = 0; j < data.Length; j++)
+            {
+                if (data[j][0] >= 55 && data[j][1] > 7)
                 {
-                    if (data[j][0] >= 55 && data[j][1] > 7)
-                    {
-                        result.Add("Senior");
-                    }
-                    else
-                    {
-                        result.Add("Open");
-                    }
-                   
+                    result.Add("Senior");
                 }
-              
-            
+                else
+                {
+                    result.Add("Open");
+                }
+
+            }
             return result;
         }
+
+        public static long Playingwithdigits(int n, int p)
+        {
+
+            // your code
+            var cha = n.ToString().ToCharArray();
+            long total = 0;
+
+            foreach (var item in cha)
+            {
+               total += long.Parse(Math.Pow(long.Parse(item.ToString()), p).ToString());
+                p++;
+            }
+
+            if (total % n == 0)
+            {
+                return total / n;
+            }
+            return -1;
+        }
+
     }
 }
