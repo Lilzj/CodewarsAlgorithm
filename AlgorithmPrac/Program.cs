@@ -7,7 +7,7 @@ namespace AlgorithmPrac
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Playingwithdigits(46288, 3));
+            Console.WriteLine(XO("zpzpzpzp"));
         }
 
         public static int Quadrant(int x, int y)
@@ -53,7 +53,7 @@ namespace AlgorithmPrac
 
             foreach (var item in cha)
             {
-               total += long.Parse(Math.Pow(long.Parse(item.ToString()), p).ToString());
+                total += long.Parse(Math.Pow(long.Parse(item.ToString()), p).ToString());
                 p++;
             }
 
@@ -64,5 +64,37 @@ namespace AlgorithmPrac
             return -1;
         }
 
-    }
+        public static bool ExesandOhs(string input)
+        {
+            var words = input.ToCharArray();
+            var x = new List<string>();
+            var o = new List<string>();
+            
+            if (!words.Contains('x') && !words.Contains('o'))
+            {
+                return true;
+            }
+
+            foreach (var word in words)
+            {
+                if (word.ToString().ToLower() == "x")
+                {
+                    x.Add(word.ToString());
+                }
+                if (word.ToString().ToLower() == "o")
+                {
+                    x.Add(word.ToString());
+                }
+            }
+
+            if (x.Count() == o.Count())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    } 
 }
