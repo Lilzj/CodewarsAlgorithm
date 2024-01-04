@@ -7,7 +7,7 @@ namespace AlgorithmPrac
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(XO("zpzpzpzp"));
+            Console.WriteLine(DigitalRoot(493193));
         }
 
         public static int Quadrant(int x, int y)
@@ -95,6 +95,24 @@ namespace AlgorithmPrac
             {
                 return false;
             }
+        }
+
+        public static int DigitalRoot(long n)
+        {
+            // Your awesome code here!
+            var result = 0;
+            var spl = n.ToString().ToCharArray();
+            while (spl.Length > 1)
+            {
+                result = 0;
+                foreach (var item in spl)
+                {
+                    result += int.Parse(item.ToString());
+                };
+                spl = result.ToString().ToCharArray();
+
+            }
+                return result;
         }
     } 
 }
