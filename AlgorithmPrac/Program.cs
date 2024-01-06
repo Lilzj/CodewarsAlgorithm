@@ -7,7 +7,7 @@ namespace AlgorithmPrac
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(DuplicateEncode("recede"));
+            Console.WriteLine(ValidatePin("-12345"));
         }
 
         public static int Quadrant(int x, int y)
@@ -178,6 +178,11 @@ namespace AlgorithmPrac
             }
 
             return result;
+        }
+
+        public static bool ValidatePin(string pin)
+        {
+            return pin.All(n => Char.IsDigit(n)) && (pin.Length == 4 || pin.Length == 6);
         }
     } 
 }
