@@ -7,7 +7,7 @@ namespace AlgorithmPrac
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(DigitalRoot(493193));
+            Console.WriteLine(DuplicateEncode("recede"));
         }
 
         public static int Quadrant(int x, int y)
@@ -113,6 +113,36 @@ namespace AlgorithmPrac
 
             }
                 return result;
+        }
+
+        public static string DuplicateEncode(string word)
+        {
+            var wordCount = new Dictionary<string, int>();
+            var result = string.Empty;
+
+            foreach (var item in word)
+            {
+                if (wordCount.ContainsKey(item.ToString()))
+                {
+                    wordCount[item.ToString()]++;
+                }
+                else
+                {
+                    wordCount.Add(item.ToString(), 1);
+                }
+
+            }
+
+            foreach (var item in word)
+            {
+                if (wordCount[item.ToString()] > 1)
+                {
+                    result += ")";
+                }
+                else { result += "("; }
+            }
+
+            return result.ToString();
         }
     } 
 }
