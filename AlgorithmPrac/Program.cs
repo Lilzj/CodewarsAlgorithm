@@ -7,7 +7,7 @@ namespace AlgorithmPrac
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(ValidatePin("-12345"));
+            Console.WriteLine(binToDec("110"));
         }
 
         public static int Quadrant(int x, int y)
@@ -183,6 +183,20 @@ namespace AlgorithmPrac
         public static bool ValidatePin(string pin)
         {
             return pin.All(n => Char.IsDigit(n)) && (pin.Length == 4 || pin.Length == 6);
+        }
+
+        public static int binToDec(string s)
+        {
+            int total = 0;
+            var newStr = s.Reverse();
+            var p = 0;
+            foreach (var item in newStr)
+            {
+               
+                total += int.Parse(Math.Pow(2, p).ToString()) * int.Parse(item.ToString());
+                p++;
+            };
+            return total;
         }
     } 
 }
