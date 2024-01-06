@@ -144,5 +144,20 @@ namespace AlgorithmPrac
 
             return result.ToString();
         }
+
+        public static bool IsValidWalk(string[] walk)
+        {
+            if (walk.Length < 10 || walk.Length > 10)
+                return false;
+
+            for (int i = 0; i < walk.Length; i++)
+            {
+                if (i == walk.Length - 1) break;
+                if (walk[i] == walk[i + 1])
+                    return false;
+            }
+
+            return true;
+        }
     } 
 }
