@@ -159,5 +159,25 @@ namespace AlgorithmPrac
 
             return true;
         }
+
+        public int GetSum(int a, int b)
+        {
+            if (a == b) return a;
+            var result = 0;
+            var temp = 0;
+            if (a > b)
+            {
+                temp = a;
+                a = b;
+                b = temp;
+            }
+
+            for (int i = a; i <= b; i++)
+            {
+                result += i;
+            }
+
+            return result;
+        }
     } 
 }
