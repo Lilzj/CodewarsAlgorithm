@@ -1,4 +1,7 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Text;
 
 namespace AlgorithmPrac
@@ -7,7 +10,13 @@ namespace AlgorithmPrac
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(binToDec("110"));
+            List<string> paths = new List<string>()
+            {
+                @"C:\Users\USER\Desktop\server1.txt",
+                @"C:\Users\USER\Desktop\server2.txt",
+                @"C:\Users\USER\Desktop\server3.txt"
+            };
+            Console.WriteLine(fileHadling(paths));
         }
 
         public static int Quadrant(int x, int y)
@@ -43,7 +52,6 @@ namespace AlgorithmPrac
             }
             return result;
         }
-
         public static long Playingwithdigits(int n, int p)
         {
 
@@ -63,7 +71,6 @@ namespace AlgorithmPrac
             }
             return -1;
         }
-
         public static bool ExesandOhs(string input)
         {
             var words = input.ToCharArray();
@@ -96,7 +103,6 @@ namespace AlgorithmPrac
                 return false;
             }
         }
-
         public static int DigitalRoot(long n)
         {
             // Your awesome code here!
@@ -114,11 +120,10 @@ namespace AlgorithmPrac
             }
                 return result;
         }
-
         public static string DuplicateEncode(string word)
         {
             var wordCount = new Dictionary<string, int>();
-            var result = string.Empty;
+            var result = @"C:\Users\USER\Desktop\result.txt";
 
             foreach (var item in word)
             {
@@ -144,7 +149,6 @@ namespace AlgorithmPrac
 
             return result.ToString();
         }
-
         public static bool IsValidWalk(string[] walk)
         {
             if (walk.Length < 10 || walk.Length > 10)
@@ -159,7 +163,6 @@ namespace AlgorithmPrac
 
             return true;
         }
-
         public int GetSum(int a, int b)
         {
             if (a == b) return a;
@@ -179,12 +182,10 @@ namespace AlgorithmPrac
 
             return result;
         }
-
         public static bool ValidatePin(string pin)
         {
             return pin.All(n => Char.IsDigit(n)) && (pin.Length == 4 || pin.Length == 6);
         }
-
         public static int binToDec(string s)
         {
             int total = 0;
@@ -197,6 +198,42 @@ namespace AlgorithmPrac
                 p++;
             };
             return total;
+        }
+
+        public static string fileHadling(List<string> paths)
+        {
+            var pathValue = new Dictionary<string, int>();
+            var result = @"C:\Users\USER\Desktop\result.txt";
+            foreach (var path in paths)
+            {
+                if (File.Exists(path))
+                {
+                    StreamReader sr = new StreamReader(path);
+                    while (!sr.EndOfStream)
+                    {
+                        string[] temp = sr.ReadToEnd().Replace("\r", "").TrimEnd().Split("\n");
+                        foreach (var item in temp)
+                        {
+                            var check = item.Split(" ");
+                            if (pathValue.ContainsKey(check[0]))
+                            {
+                                pathValue[check[0]] += int.Parse(check[1]);
+                            }
+                            else
+                            {
+                                pathValue.Add(check[0], int.Parse(check[1]));
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<string, int> kvp in pathValue)
+            {
+                System.IO.File.AppendAllText(@"C:\Users\USER\Desktop\result.txt", string.Format("{0} {1} {2}", kvp.Key, kvp.Value, Environment.NewLine));
+            }
+
+            return result;
         }
     } 
 }
